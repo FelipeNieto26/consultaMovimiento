@@ -1,0 +1,42 @@
+<definitions name="service" targetNamespace="http://services.service.brrd.com/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy"
+             xmlns:tns="http://services.service.brrd.com/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://services.service.brrd.com/" schemaLocation="Service_schema1.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="consultaMovimientos">
+    <part name="ConsultaMovimientoRequest" type="tns:consultaMovimientosRequest">
+    </part>
+  </message>
+  <message name="consultaMovimientosResponse">
+    <part name="Response" type="tns:serviceResponse">
+    </part>
+  </message>
+  <portType name="IconsultaMovimientosRequest">
+    <operation name="consultaMovimientos">
+      <input message="tns:consultaMovimientos" wsam:Action="http://services.service.brrd.com/IconsultaMovimientosRequest/consultaMovimientosRequest">
+    </input>
+      <output message="tns:consultaMovimientosResponse" wsam:Action="http://services.service.brrd.com/IconsultaMovimientosRequest/consultaMovimientosResponse">
+    </output>
+    </operation>
+  </portType>
+  <binding name="consultaMovimientosImplPortBinding" type="tns:IconsultaMovimientosRequest">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="consultaMovimientos">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" namespace="http://services.service.brrd.com/"/>
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://services.service.brrd.com/"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="service">
+    <port name="consultaMovimientosImplPort" binding="tns:consultaMovimientosImplPortBinding">
+      <soap:address location="http://172.22.30.34:9082/UAT/API/2.0/MovimientosCuenta/service"/>
+    </port>
+  </service>
+</definitions>
